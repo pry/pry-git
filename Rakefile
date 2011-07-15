@@ -15,15 +15,17 @@ CLEAN.include("**/*#*", "**/*#*.*", "**/*_flymake*.*", "**/*_flymake",
 
 def apply_spec_defaults(s)
   s.name = PROJECT_NAME
-  s.summary = "FIX ME"
+  s.summary = "A Ruby-aware git layer"
   s.version = PryGit::VERSION
   s.date = Time.now.strftime '%Y-%m-%d'
   s.author = "John Mair (banisterfiend)"
   s.email = 'jrmair@gmail.com'
   s.description = s.summary
   s.require_path = 'lib'
-  s.homepage = "http://banisterfiend.wordpress.com"
+  s.homepage = "http://github.com/pry/pry-git"
   s.files = Dir["lib/**/*.rb", "test/*.rb", "CHANGELOG", "README.md", "Rakefile"]
+  s.add_dependency("diffy")
+  s.add_dependency("grit")
 end
 
 desc "run pry with plugin enabled"
