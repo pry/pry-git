@@ -12,7 +12,7 @@ pry-git enables you to diff an individual _method_ , it can show you
 the blame for a method  and ultimately allow you to commit 'methods' (rather than amorphous
 'hunks' of code).
 
-pry-git is a plugin for the [pry](http://github.com/pry/pry)
+pry-git is a plugin for the [pry](http://pry.github.com)
 REPL.
 
 pry-git is very much proof of concept right now, stay tuned!
