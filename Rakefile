@@ -26,6 +26,7 @@ def apply_spec_defaults(s)
   s.files = Dir["lib/**/*.rb", "test/*.rb", "CHANGELOG", "README.md", "Rakefile"]
   s.add_dependency("diffy")
   s.add_dependency("grit")
+  s.add_dependency("pry", ">=0.9.2")
 end
 
 desc "run pry with plugin enabled"

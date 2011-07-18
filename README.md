@@ -13,7 +13,7 @@ the blame for a method  and ultimately allow you to commit 'methods' (rather tha
 'hunks' of code).
 
 pry-git is a plugin for the [pry](http://github.com/banister/pry)
-REPL, a powerful IRB alternative.
+REPL.
 
 pry-git is very much proof of concept right now, stay tuned!
 
@@ -24,7 +24,7 @@ pry-git is very much proof of concept right now, stay tuned!
 Example: blame
 --------
 
-    pry(main)> blame Pry#repl
+    pry(main)> git blame Pry#repl
     John Mair   def repl(target=TOPLEVEL_BINDING)
     John Mair     target = Pry.binding_for(target)
     John Mair     target_self = target.eval('self')
@@ -49,7 +49,7 @@ Example: blame
 Example: diff
 --------
 
-    pry(main)> diff Pry#repl
+    pry(main)> git diff Pry#repl
        def repl(target=TOPLEVEL_BINDING)
     +
     +    # hey baby
@@ -73,14 +73,38 @@ Example: diff
          return_value = repl_epilogue(target, nesting_level, break_data)
          return_value || target_self
        end
-    -
-    -  # Perform a read-eval-print.
-    -  # If no parameter is given, default to top-level (main).
+
+Example: add
+--------
+
+Note that `.git` invokes the system `git` command (a `.` prefix
+forwards the line to the shell, see: [shell commands](https://github.com/pry/pry/wiki/Shell-Integration#Execute_shell_commands)
+
+    pry(main) git add Pry#repl
+    pry(main) .git diff --cached
+    diff --git a/lib/pry/pry_instance.rb b/lib/pry/pry_instance.rb
+    index 7a4c403..6483a4a 100644
+    --- a/lib/pry/pry_instance.rb
+    +++ b/lib/pry/pry_instance.rb
+    @@ -164,9 +164,11 @@ class Pry
+       #   Pry.new.repl(Object.new)
+       def repl(target=TOPLEVEL_BINDING)
+
+    +    # hey baby
+         target = Pry.binding_for(target)
+         target_self = target.eval('self')
+
+    +    # bink
+         repl_prologue(target)
+
+         # cannot rely on nesting.level as
 
 Features and limitations
 -------------------------
 
-* commit-method not yet implemented
+* Just a proof of concept at this stage
+* The methods you're invoking the git commands on must be part of a
+  git repo.
 * BETA software, not guaranteed to work properly yet, stay tuned.
 
 Contact
