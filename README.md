@@ -3,7 +3,7 @@ pry-git
 
 (C) John Mair (banisterfiend) 2011
 
-_ruby aware git_
+_A Ruby-aware git layer_
 
 Retrieve blame, perform diffs, make commits using the natural units of
 Ruby code.
@@ -12,14 +12,13 @@ pry-git enables you to diff an individual _method_ , it can show you
 the blame for a method  and ultimately allow you to commit 'methods' (rather than amorphous
 'hunks' of code).
 
-pry-git is a plugin for the [pry](http://github.com/banister/pry)
+pry-git is a plugin for the [pry](http://github.com/pry/pry)
 REPL.
 
 pry-git is very much proof of concept right now, stay tuned!
 
-* NOT AVAILABLE: Install the [gem](https://rubygems.org/gems/pry-git): `gem install pry-git`
-* NOT AVAILABLE: Read the [documentation](http://rdoc.info/github/banister/pry-git/master/file/README.md)
-* See the [source code](http://github.com/banister/pry-git)
+* Install the [gem](https://rubygems.org/gems/pry-git): `gem install pry-git`
+* See the [source code](http://github.com/pry/pry-git)
 
 Example: blame
 --------
@@ -78,7 +77,7 @@ Example: add
 --------
 
 Note that `.git` invokes the system `git` command (a `.` prefix
-forwards the line to the shell, see: [shell commands](https://github.com/pry/pry/wiki/Shell-Integration#Execute_shell_commands)
+forwards the line to the shell, see: [shell commands](https://github.com/pry/pry/wiki/Shell-Integration#Execute_shell_commands))
 
     pry(main) git add Pry#repl
     pry(main) .git diff --cached
@@ -102,10 +101,12 @@ forwards the line to the shell, see: [shell commands](https://github.com/pry/pry
 Features and limitations
 -------------------------
 
-* Just a proof of concept at this stage
+* Just a proof of concept at this stage.
 * The methods you're invoking the git commands on must be part of a
-  git repo.
-* BETA software, not guaranteed to work properly yet, stay tuned.
+  git repo (of course).
+* Commands currently just work with respect to `HEAD`; this
+  restriction will be lifted in a later version.
+* BETA software, beware!
 
 Contact
 -------
