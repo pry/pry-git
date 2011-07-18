@@ -9,7 +9,7 @@ require 'tempfile'
 
 module PryGit
   GitCommands = Pry::CommandSet.new do
-    command "git blame", "Show blame for a method" do |meth_name|
+    command "git blame", "Show blame for a method (for method in HEAD)" do |meth_name|
       if (meth = get_method_object(meth_name, target, {})).nil?
         output.puts "Invalid method name: #{meth_name}."
         next
@@ -33,7 +33,7 @@ module PryGit
       output.puts lines_with_blame.join
     end
 
-    command "git diff", "Show the diff for a method" do |meth_name|
+    command "git diff", "Show the diff for a method (working directory vs HEAD)" do |meth_name|
 
       if (meth = get_method_object(meth_name, target, {})).nil?
         output.puts "Invalid method name: #{meth_name}."
@@ -76,7 +76,6 @@ module PryGit
       def get_file_from_commit(path)
         git_root = find_git_root(File.dirname(path))
         repo = Grit::Repo.new(git_root)
-        binding.pry
         head = repo.commits.first
         tree_names = relative_path(git_root, path).split("/")
         start_tree = head.tree
