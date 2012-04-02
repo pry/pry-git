@@ -34,7 +34,7 @@ module PryGit
       $1
     end
 
-    # return the git top level for a give directory
+    # return the git top level for a given directory
     def find_git_root(dir)
       git_root = "."
       Dir.chdir dir do
