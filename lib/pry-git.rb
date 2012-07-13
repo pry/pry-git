@@ -6,6 +6,7 @@ require "pry"
 require 'grit'
 require 'diffy'
 require 'tempfile'
+require 'open3'
 
 module PryGit
   module GitHelpers
@@ -36,12 +37,13 @@ module PryGit
 
     # return the git top level for a given directory
     def find_git_root(dir)
-      git_root = "."
+      git_root = nil
       Dir.chdir dir do
-        git_root =  `git rev-parse --show-toplevel`.chomp
+        git_root, _ = Open3.capture2e("git rev-parse --show-toplevel")
+        git_root = git_root.chomp
       end
 
-      raise "No associated git repository found!" if git_root =~ /fatal:/
+      raise Pry::CommandError, "No git repository found in #{dir}" if git_root =~ /fatal:/
       git_root
     end
   end
