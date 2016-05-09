@@ -1,4 +1,5 @@
 Makefile
+Gemfile.lock
 *.so
 *.o
 *.def
